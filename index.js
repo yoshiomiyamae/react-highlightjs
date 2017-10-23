@@ -1,4 +1,3 @@
-"use strict";
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = Object.setPrototypeOf ||
         ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
@@ -22,7 +21,12 @@ var Highlight = (function (_super) {
         return (React.createElement("pre", null,
             React.createElement("code", { className: "hljs", dangerouslySetInnerHTML: { __html: (function () {
                         if (_this.props.language) {
-                            return highlight_js_1.highlight(_this.props.language, _this.props.children, _this.props.ignoreIllegals, _this.props.continuation).value;
+                            try {
+                                return highlight_js_1.highlight(_this.props.language, _this.props.children, _this.props.ignoreIllegals, _this.props.continuation).value;
+                            }
+                            catch (e) {
+                                return highlight_js_1.highlightAuto(_this.props.children).value;
+                            }
                         }
                         else {
                             return highlight_js_1.highlightAuto(_this.props.children).value;
